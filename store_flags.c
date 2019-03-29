@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/29 14:29:08 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/29 17:17:39 by svoort        ########   odam.nl         */
+/*   Updated: 2019/03/29 17:49:42 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ int		ft_isflag(char c)
 		return (0);
 }
 
+void	ft_store(int *flags, char c)
+{
+	if (c == 'l')
+		*flags = *flags | 1;
+	else if (c == 'R')
+		*flags = *flags | 2;
+	else if (c == 'a')
+		*flags = *flags | 4;
+	else if (c == 'r')
+		*flags = *flags | 8;
+	else if (c == 't')
+		*flags = *flags | 16;
+}
+
 void	store_flags(char *str, int *flags)
 {
 	int	i;
@@ -35,7 +49,7 @@ void	store_flags(char *str, int *flags)
 	while (str[i])
 	{
 		if (ft_isflag(str[i]))
-			//ft_store();
+			ft_store(flags, str[i]);
 		i++;
 	}
 }
