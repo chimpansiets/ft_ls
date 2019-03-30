@@ -6,13 +6,13 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/29 14:14:11 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/29 18:21:35 by svoort        ########   odam.nl         */
+/*   Updated: 2019/03/30 17:37:11 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	read_arguments(int argc, char **argv)
+int		read_flags(int argc, char **argv)
 {
 	int	i;
 	int	file_found;
@@ -29,10 +29,15 @@ void	read_arguments(int argc, char **argv)
 			file_found = 1;
 		i++;
 	}
+	return (flags);
 }
 
 int		main(int argc, char **argv)
 {
+	int	flags;
+
+	flags = 0;
 	if (argc > 1)
-		read_arguments(argc, argv);
+		flags = read_flags(argc, argv);
+	listdir(argv[1]);
 }

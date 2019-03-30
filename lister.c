@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/27 13:19:25 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/29 14:13:40 by svoort        ########   odam.nl         */
+/*   Updated: 2019/03/30 16:10:29 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,20 @@ void	ext_attr(int argc, char **argv)
 		}
 
 		printf("%s:\n", argv[i]);
-		printf("\tinode: %u\n", sb.st_ino);
+		printf("\tinode: %llu\n", sb.st_ino);
 		printf("\towner: %u (%s)\n", sb.st_uid, pwuser->pw_name);
 		printf("\tgroup: %u (%s)\n", sb.st_gid, grpnam->gr_name);
 		printf("\tperms: %o\n", sb.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
 		printf("\tlinks: %d\n", sb.st_nlink);
-		printf("\tsize: %ld\n", sb.st_size); /* you may use %lld */
+		printf("\tsize: %lld\n", sb.st_size); /* you may use %lld */
 		printf("\tatime: %s", ctime(&sb.st_atime));
 		printf("\tmtime: %s", ctime(&sb.st_mtime));
 		printf("\tctime: %s", ctime(&sb.st_ctime));
-
 		printf("\n");
 	}
 }
+
 int main(int argc, char **argv) {
-    listdir(".", 0);
-	ft_uid();
 	ext_attr(argc, argv);
     return 0;
 }

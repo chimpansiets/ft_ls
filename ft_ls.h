@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/29 14:14:30 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/29 16:54:43 by svoort        ########   odam.nl         */
+/*   Updated: 2019/03/30 17:35:19 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,30 @@
 
 # define ACC_FLAGS "lRart"
 
+typedef struct	s_file {
+	struct stat		info;
+	struct passwd	*pwuser;
+	struct group	*grpnam;
+}				t_file;
+
+/*
+**  main.c
+*/
+
+int     read_flags(int argc, char **argv);
+
 /*
 **	store_flags.c
 */
 
 void	store_flags(char *str, int *flags);
 int		ft_isflag(char c);
+void    listdir(char *name);
+
+/*
+**  ft_listdir.c
+*/
+
+
 
 #endif
