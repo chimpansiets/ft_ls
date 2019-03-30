@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/29 14:29:08 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/29 17:49:42 by svoort        ########   odam.nl         */
+/*   Updated: 2019/03/30 14:34:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int		ft_isflag(char c)
 
 	ptr = ft_strchr(ACC_FLAGS, c);
 	if (ptr != NULL)
-	{
-		ft_putchar(c);
 		return (1);
-	}
 	else
 		return (0);
 }
