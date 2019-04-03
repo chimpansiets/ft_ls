@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_strchr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/25 09:31:33 by svoort         #+#    #+#                */
-/*   Updated: 2019/04/02 15:46:01 by svoort        ########   odam.nl         */
+/*   Created: 2019/01/10 08:31:59 by svoort         #+#    #+#                */
+/*   Updated: 2019/04/02 15:47:14 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_wcharlen(const wchar_t *s)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	char	*ptr;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i * 5);
-}
-
-size_t		ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	ptr = (char*)s;
+	while (*ptr != c && *ptr != '\0')
+		ptr++;
+	if (*ptr != c)
+		return (NULL);
+	else
+		return (ptr);
 }

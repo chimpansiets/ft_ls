@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/29 14:14:11 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/30 17:37:11 by svoort        ########   odam.nl         */
+/*   Updated: 2019/04/01 13:38:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int		main(int argc, char **argv)
 	int	flags;
 
 	flags = 0;
-	if (argc > 1)
-		flags = read_flags(argc, argv);
-	listdir(argv[1]);
+	flags = read_flags(argc, argv);
+	if (argc < 2)
+		listdir(".");
+	else
+		listdir(argv[1]);
 }

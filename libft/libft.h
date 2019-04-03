@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 10:51:29 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/30 17:33:03 by svoort        ########   odam.nl         */
+/*   Updated: 2019/04/02 15:46:25 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				*ft_strndup(const char *s1, size_t n);
 char				*ft_joinfree(char *s1, char *s2, int j);
+size_t				ft_wcharlen(const wchar_t *s);
 
 #endif

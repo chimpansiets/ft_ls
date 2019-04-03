@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/29 14:14:30 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/30 17:35:19 by svoort        ########   odam.nl         */
+/*   Updated: 2019/04/02 15:53:38 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,16 @@
 # include <time.h>
 # include <stdint.h>
 # include "./libft/libft.h"
+# include "./ft_printf/libft.h"
 
 # define ACC_FLAGS "lRart"
 
 typedef struct	s_file {
+	char			*filename;
 	struct stat		info;
 	struct passwd	*pwuser;
 	struct group	*grpnam;
+	struct s_file	*next;
 }				t_file;
 
 /*

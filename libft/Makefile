@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -c
+CFLAGS = -g -Wall -Wextra -Werror -c
 SRCS =	ft_atoi.c ft_bzero.c ft_countwords.c ft_isalnum.c ft_isalpha.c \
 		ft_isascii.c ft_isdigit.c ft_islower.c ft_isprint.c ft_isupper.c \
 		ft_itoa.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c \
