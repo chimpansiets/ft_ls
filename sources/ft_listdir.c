@@ -59,18 +59,6 @@ void	ext_attr(const char *filename, t_file **list)
 	new->pwuser = pwuser;
 	new->next = NULL;
 	append_list(new, list);
-
-    // printf("%s:\n", filename);
-    // printf("\tinode: %llu\n", sb.st_ino);
-    // printf("\towner: %u (%s)\n", sb.st_uid, pwuser->pw_name);
-    // printf("\tgroup: %u (%s)\n", sb.st_gid, grpnam->gr_name);
-    // printf("\tperms: %o\n", sb.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
-    // printf("\tlinks: %d\n", sb.st_nlink);
-    // printf("\tsize: %lld\n", sb.st_size); /* you may use %lld */
-    // printf("\tatime: %s", ctime(&sb.st_atime));
-    // printf("\tmtime: %s", ctime(&sb.st_mtime));
-    // printf("\tctime: %s", ctime(&sb.st_ctime));
-    // printf("\n");
 }
 
 void listdir(char *name)
