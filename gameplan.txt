@@ -1,0 +1,42 @@
+-l
+(The lowercase letter ``ell''.)  List in long format.  (See below.)  If the output is to a terminal, a total sum for all the file sizes is output on a line before the long listing.
+
+-R
+ Recursively list subdirectories encountered.
+
+-a
+Include directory entries whose names begin with a dot (.).
+
+-r
+Reverse the order of the sort to get reverse lexicographical order or the oldest entries first (or largest files last, if combined with sort by size
+
+-t
+Sort by time modified (most recently modified first) before sorting the operands by lexicographical order.
+
+
+-sudoku
+Solves a sudoku from input
+
+-shop
+Select a random shop from pre determent list
+
+-RNG
+Select random line from input file
+
+-dedicate
+Select a UID from pre determent list
+
+-kastu
+Outputs “JAAAA BOROOO”
+
+-error
+Solves a random sudoku
+
+-mimma
+Selects a random meme from pre determent list
+
+-coalitions
+
+
+-Vela
+Make all outputs red
