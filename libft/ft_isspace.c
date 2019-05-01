@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_isspace.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/25 09:31:33 by svoort         #+#    #+#                */
-/*   Updated: 2019/04/24 12:07:32 by svoort        ########   odam.nl         */
+/*   Created: 2019/04/26 13:01:17 by svoort         #+#    #+#                */
+/*   Updated: 2019/04/27 17:15:40 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-size_t		ft_wcharlen(const wchar_t *s)
+int		ft_isspace(char c)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i * 5);
-}
-
-size_t		ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if (c == ' ' || c == '\n' || c == '\t')
+		return (1);
+	else
+		return (0);
 }

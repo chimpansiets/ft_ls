@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_strcdup.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/25 09:31:33 by svoort         #+#    #+#                */
-/*   Updated: 2019/04/24 12:07:32 by svoort        ########   odam.nl         */
+/*   Created: 2019/04/30 14:44:51 by svoort         #+#    #+#                */
+/*   Updated: 2019/04/30 14:49:18 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-size_t		ft_wcharlen(const wchar_t *s)
+char	*ft_strcdup(const char *src, char c)
 {
-	size_t	i;
+	char	*ret;
+	int		i;
 
 	i = 0;
-	while (s[i])
+	ret = (char*)malloc(sizeof(char) * ft_strlen(src));
+	while (src[i] && src[i] != c)
+	{
+		ret[i] = src[i];
 		i++;
-	return (i * 5);
-}
-
-size_t		ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	}
+	ret[i] = '\0';
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 10:51:29 by svoort         #+#    #+#                */
-/*   Updated: 2019/04/02 15:46:25 by svoort        ########   odam.nl         */
+/*   Updated: 2019/04/30 14:49:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+# define INT_MIN -2147483648
+# define INT_MAX 2147483647
 
 typedef	struct		s_list
 {
@@ -92,6 +94,8 @@ void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				*ft_strndup(const char *s1, size_t n);
 char				*ft_joinfree(char *s1, char *s2, int j);
-size_t				ft_wcharlen(const wchar_t *s);
+int					ft_is_int(char *str);
+int					ft_isspace(char c);
+char				*ft_strcdup(const char *src, char c);
 
 #endif

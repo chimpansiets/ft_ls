@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    Makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: svoort <svoort@student.codam.nl>             +#+                      #
+#                                                    +#+                       #
+#    Created: 2019/04/24 16:34:33 by svoort         #+#    #+#                 #
+#    Updated: 2019/04/30 14:49:40 by svoort        ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
 CFLAGS = -g -Wall -Wextra -Werror -c
 SRCS =	ft_atoi.c ft_bzero.c ft_countwords.c ft_isalnum.c ft_isalpha.c \
@@ -13,24 +25,42 @@ SRCS =	ft_atoi.c ft_bzero.c ft_countwords.c ft_isalnum.c ft_isalpha.c \
 		ft_strncat.c ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c \
 		ft_strnstr.c ft_strrchr.c ft_strrev.c ft_strsplit.c ft_strstr.c \
 		ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c ft_strndup.c \
-		ft_joinfree.c
-INCLUDES = -I libft.h
+		ft_joinfree.c ft_dblhex.c ft_itoabase.c ft_nbrlen.c ft_prfdbl.c \
+		ft_prfnbr.c ft_prfoper.c ft_printf.c ft_qstr.c ft_unicode.c \
+		helper1.c helper2.c helper3.c helper4.c helper5.c helper6.c \
+		helper7.c ft_is_int.c ft_isspace.c get_next_line.c \
+		ft_strcdup.c
+INCLUDES = -I .
 NAME = libft.a
 OBJ = $(SRCS:.c=.o)
+
+# Colors
+RED				= \033[31;1m
+GREEN		    = \033[32;1m
+YELLOW			= \033[33;1m
+BLUE			= \033[34;1m
+PURPLE			= \033[35;1m
+CYAN			= \033[36;1m
+LGREY			= \033[37;1m
+END_C			= \033[m
+CLEAR			= "\033[K"
 
 all: $(NAME)
 
 $(NAME):
-	@echo "Building libft.a"
+	@printf "\r" && printf $(CLEAR) && printf "$(RED)Libft building...$(END_C)"
 	@$(CC) $(CFLAGS) $(SRCS) $(INCLUDES)
 	@ar rc $(NAME) $(OBJ)
+	@printf "\r" && printf $(CLEAR) && printf "$(GREEN)Libft built!\r$(END_C)"
+	@sleep 1
 	
 clean:
-	@echo "Cleaning objects..."
 	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	@echo "Cleaning all"
 	@/bin/rm -f $(NAME)
 
 re:	fclean all
+
+.PHONY: all clean fclean re
+.SILENT:

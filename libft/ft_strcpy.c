@@ -5,23 +5,24 @@
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/09 13:17:42 by svoort         #+#    #+#                */
-/*   Updated: 2019/01/18 10:24:44 by svoort        ########   odam.nl         */
+/*   Created: 2019/02/22 10:23:24 by svoort         #+#    #+#                */
+/*   Updated: 2019/04/24 12:14:12 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 char	*ft_strcpy(char *dst, const char *src)
 {
-	int i;
+	char *tmp;
 
-	i = 0;
-	while (src[i] != '\0')
+	tmp = dst;
+	while (*src)
 	{
-		dst[i] = src[i];
-		i++;
+		*dst = *src;
+		dst++;
+		src++;
 	}
-	dst[i] = '\0';
-	return (dst);
+	*dst = '\0';
+	return (tmp);
 }

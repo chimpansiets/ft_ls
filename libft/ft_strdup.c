@@ -5,27 +5,29 @@
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/09 13:08:58 by svoort         #+#    #+#                */
-/*   Updated: 2019/01/18 10:24:44 by svoort        ########   odam.nl         */
+/*   Created: 2019/02/23 09:52:12 by svoort         #+#    #+#                */
+/*   Updated: 2019/04/24 12:07:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strdup(const char *s1)
+char		*ft_strdup(const char *s1)
 {
+	char	*s2;
 	int		i;
-	char	*ret;
 
 	i = 0;
-	ret = (char*)malloc(sizeof(char) * ft_strlen(s1) + 1);
-	if (ret == NULL)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		ret[i] = s1[i];
+	while (s1[i])
 		i++;
+	s2 = (char *)malloc(i + 1);
+	if (!s1 || !(s2))
+		return (0);
+	s2[i] = '\0';
+	while (i > 0)
+	{
+		i--;
+		s2[i] = s1[i];
 	}
-	ret[i] = '\0';
-	return (ret);
+	return (s2);
 }

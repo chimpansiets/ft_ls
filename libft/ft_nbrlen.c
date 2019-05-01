@@ -1,33 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   ft_nbrlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/25 09:31:33 by svoort         #+#    #+#                */
-/*   Updated: 2019/04/24 12:07:32 by svoort        ########   odam.nl         */
+/*   Created: 2019/02/25 12:46:38 by svoort         #+#    #+#                */
+/*   Updated: 2019/04/24 12:06:53 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t		ft_wcharlen(const wchar_t *s)
+static	int		ft_unblen(uintmax_t c)
 {
-	size_t	i;
+	int			i;
 
-	i = 0;
-	while (s[i])
+	i = 1;
+	while (c > 9)
+	{
+		c /= 10;
 		i++;
-	return (i * 5);
+	}
+	return (i);
 }
 
-size_t		ft_strlen(const char *s)
+int				ft_nbrlen(intmax_t c, int a)
 {
-	size_t	i;
+	int			i;
 
-	i = 0;
-	while (s[i])
+	if (!a)
+		return (ft_unblen(c));
+	i = 1;
+	if (c < -9223372036854775807)
+		return (20);
+	else if (c < 0)
+	{
 		i++;
+		c = -c;
+	}
+	while (c > 9)
+	{
+		c /= 10;
+		i++;
+	}
 	return (i);
 }

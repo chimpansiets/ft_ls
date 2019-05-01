@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlen.c                                        :+:    :+:            */
+/*   get_next_line.h                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/25 09:31:33 by svoort         #+#    #+#                */
-/*   Updated: 2019/04/24 12:07:32 by svoort        ########   odam.nl         */
+/*   Created: 2019/04/26 18:40:34 by svoort         #+#    #+#                */
+/*   Updated: 2019/04/26 18:41:10 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 32
 
-size_t		ft_wcharlen(const wchar_t *s)
-{
-	size_t	i;
+# include <unistd.h>
+# include "libft.h"
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i * 5);
-}
+int		get_next_line(int fd, char **line);
 
-size_t		ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+#endif

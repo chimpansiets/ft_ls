@@ -5,12 +5,12 @@
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/03/30 17:32:44 by svoort         #+#    #+#                */
-/*   Updated: 2019/03/30 17:32:47 by svoort        ########   odam.nl         */
+/*   Created: 2019/02/25 14:43:59 by svoort         #+#    #+#                */
+/*   Updated: 2019/04/24 12:06:35 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 static void	cpy_string1(size_t *i, char **res, char *s1)
 {
