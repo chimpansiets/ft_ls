@@ -18,25 +18,28 @@ Sort by time modified (most recently modified first) before sorting the operands
 Solves a sudoku from input
 
 -shop
-Select a random shop from pre determent list
+Select a random shop from pre determined list
 
 -RNG
 Select random line from input file
 
 -dedicate
-Select a UID from pre determent list
+Select a UID from pre determined list
 
--kastu
+-katsu
 Outputs “JAAAA BOROOO”
 
 -error
 Solves a random sudoku
 
 -mimma
-Selects a random meme from pre determent list
+Selects a random meme from pre determined list
 
 -coalitions
-
+Outputs "Vela is the littest dont @ me"
 
 -Vela
 Make all outputs red
+ 
+-Katsu
+Outputs "Katsu   1e van der Helststraat 70       Coffeeshops"
