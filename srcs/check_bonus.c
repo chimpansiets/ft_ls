@@ -6,9 +6,11 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 15:31:18 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/02 18:48:10 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/02 18:50:17 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_ls.h"
 
 #define SUDOKU		"sudoku"
 #define KATSU		"katsu"

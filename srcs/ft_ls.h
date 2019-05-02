@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/02 18:11:13 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/02 19:05:06 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,23 @@ t_fl					*g_fl;
 */
 
 int						ft_check_bonus_flags(int argc, char **argv);
+
+/*
+**	ft_error.c
+*/
+
+void					ft_error(char *str);
+
+/*
+**	solve_sudoku.c
+*/
+
+void					solve_sudoku(int argc, char **argv);
+
+/*
+**	read_sudoku_input.c
+*/
+
+short					**read_sudoku_file(int argc, char **argv);
 
 #endif
