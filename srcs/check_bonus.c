@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 15:31:18 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/02 17:56:33 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/02 18:48:10 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,21 @@
 
 int		ft_check_bonus_flags(int argc, char **argv)
 {
-	int		i;
-
-	i = 1;
-	(void)argc;
-	(void)argv;
-	// if (ft_strcmp(&argv[1][i], ))
+	if (ft_strcmp(&argv[1][1], SUDOKU))
+		solve_sudoku();
+	else if (ft_strcmp(&argv[1][1], KATSU))
+		katsu();
+	else if (ft_strcmp(&argv[1][1], SHOP))
+		shop();
+	else if (ft_strcmp(&argv[1][1], RNG))
+		rng();
+	else if (ft_strcmp(&argv[1][1], DEDICATE))
+		dedicate();
+	else if (ft_strcmp(&argv[1][1], MIMMA))
+		mimma();
+	else if (ft_strcmp(&argv[1][1], COALITIONS))
+		coalitions();
+	else if (ft_strcmp(&argv[1][1], VELA))
+		vela();
 	return (0);
 }
