@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:05 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/01 18:15:11 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/02 18:13:33 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@ static inline short	assign_flag(char flag)
 	const size_t		index = ft_strstr(chars, j) - chars;
 	int					res;
 
-	if (flag == chars[0])
 	res = 0;
+	if (index < 5)
+		((char *)(&g_fl->flags))[index] = true;
+	else
+		res = ft_printf("%s%c\n%s", "./ft_ls: illegal option -- ", flag, \
+		"usage: ./ft_ls [-AGRadefgilprstu1@] [file ...]\n");
+	return (res != 0);
 }
 
 static inline int	parse_flags(int argc, char **argv)
@@ -38,23 +43,27 @@ static inline int	parse_flags(int argc, char **argv)
 			i = 1;
 			while (argv[index][i])
 			{
-				assign_flag(argv[index][i]);
+				if (assign_flag(argv[index][i]))
+					return (-1);
+				i++;
 			}
 			index++;
 		}
 	}
+	return (1);
 }
 
 int main(int argc, char **argv)
 {
 	int		i;
 
+	g_fl = (t_fl*)ft_memalloc(sizeof(t_fl));
 	i = parse_flags(argc, argv);
 	if (i != -1)
 	{
 		// doe die tknewie
 		// is wel zo
-		ls_trash();
+		// ls_trash();
 	}
 	return (argc);
 }
