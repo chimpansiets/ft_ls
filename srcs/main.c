@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:05 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/02 18:13:33 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/02 18:44:44 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static inline short	assign_flag(char flag)
 		((char *)(&g_fl->flags))[index] = true;
 	else
 		res = ft_printf("%s%c\n%s", "./ft_ls: illegal option -- ", flag, \
-		"usage: ./ft_ls [-AGRadefgilprstu1@] [file ...]\n");
+		"usage: ./ft_ls [-lRart] [file ...]\n");
 	return (res != 0);
 }
 
