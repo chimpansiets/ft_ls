@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 19:04:33 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/02 19:07:03 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/08 13:50:36 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,25 @@ void	ft_check_input(char *buf)
 
 short	*parse_input(char *buf)
 {
+	int		i;
+	int		index;
+	short	*digits;
+
+	i = 0;
+	index = 0;
+	digits = (short*)ft_memalloc(sizeof(short) * 9);
 	ft_check_input(buf);
+	while (buf[i])
+	{
+		while (buf[i] && ft_isspace(buf[i]))
+			i++;
+		digits[index] = ft_atoi(&buf[i]);
+		while (buf[i] && ft_isdigit(buf[i]))
+			i++;
+		index++;
+	}
+	digits[index] = NULL;
+	return (digits);
 }
 
 short	**read_sudoku_file(int argc, char **argv)
