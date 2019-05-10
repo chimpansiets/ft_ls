@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/02 19:05:06 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/10 16:36:27 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <pwd.h>
 # include <dirent.h>
 # include <stdbool.h>
+# include <limits.h>
 # include "../libft/libft.h"
 # include "../libft/ft_printf.h"
 # include "../libft/get_next_line.h"
@@ -77,6 +78,6 @@ void					solve_sudoku(int argc, char **argv);
 **	read_sudoku_input.c
 */
 
-short					**read_sudoku_file(int argc, char **argv);
+char					**read_sudoku_file(int argc, char **argv);
 
 #endif

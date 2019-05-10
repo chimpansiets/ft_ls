@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 10:51:29 by svoort         #+#    #+#                */
-/*   Updated: 2019/04/30 14:49:28 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/10 15:14:02 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-# define INT_MIN -2147483648
-# define INT_MAX 2147483647
+# ifndef INT_MIN
+#  define INT_MIN -2147483648
+# endif
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
+# endif
 
 typedef	struct		s_list
 {

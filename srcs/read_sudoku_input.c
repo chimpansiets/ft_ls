@@ -6,63 +6,34 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 19:04:33 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/08 13:50:36 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/10 16:58:37 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_check_input(char *buf)
+char	**read_sudoku_file(int argc, char **argv)
 {
-	int	i;
-
-	i = 0;
-	while (buf[i])
-	{
-		if (ft_isdigit(buf[i]) && ft_isspace(buf[i]))
-			i += 2;
-		else
-			ft_error("Sudoku file is corrupted.\n");
-	}
-}
-
-short	*parse_input(char *buf)
-{
-	int		i;
-	int		index;
-	short	*digits;
-
-	i = 0;
-	index = 0;
-	digits = (short*)ft_memalloc(sizeof(short) * 9);
-	ft_check_input(buf);
-	while (buf[i])
-	{
-		while (buf[i] && ft_isspace(buf[i]))
-			i++;
-		digits[index] = ft_atoi(&buf[i]);
-		while (buf[i] && ft_isdigit(buf[i]))
-			i++;
-		index++;
-	}
-	digits[index] = NULL;
-	return (digits);
-}
-
-short	**read_sudoku_file(int argc, char **argv)
-{
-	short	**field;
-	char	buf[19];
+	char	**field;
+	char	*buf;
 	int		fd;
 	int		i;
+	int		ret;
 
 	i = 0;
+	field = (char**)ft_memalloc(sizeof(char*) * 10);
 	if (argc < 3)
 		ft_error("Oopsie! No sudoku file given.\n");
-	fd = open(argv[3], O_RDONLY);
-	while (get_next_line(fd, &buf))
+	fd = open(argv[2], O_RDONLY);
+	while ((ret = get_next_line(fd, &buf)) > 0)
 	{
-		field[i] = parse_input(buf);
+		buf[ret] = '\0';
+		field[i] = ft_strdup(buf);
 		i++;
 	}
+	field[i] = NULL;
+	i = 0;
+	while (i++ < 9)
+		printf("%s\n", field[i]);
+	return (field);
 }

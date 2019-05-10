@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 15:31:18 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/02 18:50:17 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/10 16:28:09 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,22 @@
 
 int		ft_check_bonus_flags(int argc, char **argv)
 {
-	if (ft_strcmp(&argv[1][1], SUDOKU))
-		solve_sudoku();
-	else if (ft_strcmp(&argv[1][1], KATSU))
-		katsu();
-	else if (ft_strcmp(&argv[1][1], SHOP))
-		shop();
-	else if (ft_strcmp(&argv[1][1], RNG))
-		rng();
-	else if (ft_strcmp(&argv[1][1], DEDICATE))
-		dedicate();
-	else if (ft_strcmp(&argv[1][1], MIMMA))
-		mimma();
-	else if (ft_strcmp(&argv[1][1], COALITIONS))
-		coalitions();
-	else if (ft_strcmp(&argv[1][1], VELA))
-		vela();
+	ft_printf("%s\n", &argv[1][1]);
+	if (ft_strcmp(&argv[1][1], SUDOKU) == 0)
+		solve_sudoku(argc, argv);
+	// else if (ft_strcmp(&argv[1][1], KATSU))
+	// 	katsu();
+	// else if (ft_strcmp(&argv[1][1], SHOP))
+	// 	shop();
+	// else if (ft_strcmp(&argv[1][1], RNG))
+	// 	rng();
+	// else if (ft_strcmp(&argv[1][1], DEDICATE))
+	// 	dedicate();
+	// else if (ft_strcmp(&argv[1][1], MIMMA))
+	// 	mimma();
+	// else if (ft_strcmp(&argv[1][1], COALITIONS))
+	// 	coalitions();
+	// else if (ft_strcmp(&argv[1][1], VELA))
+	// 	vela();
 	return (0);
 }

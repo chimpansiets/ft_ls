@@ -6,13 +6,13 @@
 #    By: svoort <svoort@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/28 13:01:37 by svoort         #+#    #+#                 #
-#    Updated: 2019/05/02 17:59:45 by svoort        ########   odam.nl          #
+#    Updated: 2019/05/10 16:36:43 by svoort        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -g -Wall -Wextra -Werror
 MKEX = gcc $(FLAGS) -o
-_SRC = main.c check_bonus.c
+_SRC = main.c check_bonus.c ft_error.c solve_sudoku.c read_sudoku_input.c
 SRC = $(addprefix ./srcs/, $(_SRC))
 OBJECT = $(_SRC:.c=.o)
 COMP = gcc -g -c
