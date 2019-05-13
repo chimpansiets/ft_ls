@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 15:31:18 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/10 16:28:09 by svoort        ########   odam.nl         */
+/*   Updated: 2019/05/11 13:33:33 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 int		ft_check_bonus_flags(int argc, char **argv)
 {
-	ft_printf("%s\n", &argv[1][1]);
 	if (ft_strcmp(&argv[1][1], SUDOKU) == 0)
 		solve_sudoku(argc, argv);
 	// else if (ft_strcmp(&argv[1][1], KATSU))
