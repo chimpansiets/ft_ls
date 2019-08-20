@@ -6,16 +6,20 @@
 #    By: svoort <svoort@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/28 13:01:37 by svoort         #+#    #+#                 #
-#    Updated: 2019/05/10 16:36:43 by svoort        ########   odam.nl          #
+#    Updated: 2019/08/20 15:04:09 by svoort        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror -I includes/
 MKEX = gcc $(FLAGS) -o
-_SRC = main.c check_bonus.c ft_error.c solve_sudoku.c read_sudoku_input.c
+_BONUS = check_bonus.c solve_sudoku.c read_sudoku_input.c
+_USEFUL = main.c ft_error.c
+BONUS = $(addprefix ./bonus/, $(_BONUS))
+USEFUL = $(addprefix ./useful/, $(_USEFUL))
+_SRC = $(BONUS) $(USEFUL)
 SRC = $(addprefix ./srcs/, $(_SRC))
-OBJECT = $(_SRC:.c=.o)
-COMP = gcc -g -c
+OBJECT = $(SRC:.c=.o)
+COMP = gcc -c
 FT_LS = ft_ls
 
 # Colors
@@ -32,6 +36,7 @@ CLEAR			= "\033[K"
 all : $(FT_LS)
 
 $(FT_LS) : $(OBJECT)
+	@make -C libft/
 	@printf "$(RED)FT_LS building...\r$(END_C)"
 	@sleep 1
 	@$(MKEX) $(FT_LS) $(OBJECT) -L libft/ -lft

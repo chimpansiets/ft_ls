@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/10 16:36:27 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/20 14:40:35 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,6 @@ typedef struct			s_flags {
 	char				r;
 	char				t;
 	char				sudoku;
-	char				katsu;
-	char				shop;
-	char				rng;
-	char				dedicate;
-	char				mimma;
-	char				coalitions;
-	char				vela;
 }						t_flags;
 
 typedef struct			s_fl {
@@ -79,5 +72,11 @@ void					solve_sudoku(int argc, char **argv);
 */
 
 char					**read_sudoku_file(int argc, char **argv);
+
+/*
+**	schone.c
+*/
+
+void					schone(void);
 
 #endif

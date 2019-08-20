@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   solve_sudoku.c                                     :+:    :+:            */
+/*   check_bonus.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/02 18:52:01 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/11 13:56:35 by svoort        ########   odam.nl         */
+/*   Created: 2019/05/02 15:31:18 by svoort         #+#    #+#                */
+/*   Updated: 2019/08/20 14:57:40 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	solve_sudoku(int argc, char **argv)
-{
-	extern char **environ;
-	char		**arguments;
+#define SUDOKU		"sudoku"
 
-	arguments = read_sudoku_file(argc, argv);
-	// Eerste argument moet filename worden, nu geen zin.
-	execve("/Users/svoort/.brew/bin/sudoku_solver", arguments, environ);
+int		ft_check_bonus_flags(int argc, char **argv)
+{
+	if (ft_strcmp(&argv[1][1], SUDOKU) == 0)
+	{
+		solve_sudoku(argc, argv);
+		return (1);
+	}
+	return (0);
 }
