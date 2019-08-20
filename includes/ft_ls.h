@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/20 14:40:35 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/20 16:03:07 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@
 # include "../libft/ft_printf.h"
 # include "../libft/get_next_line.h"
 
+# define FLAG_L	g_fl.flags.l
+# define FLAG_BIG_R g_fl.flags.biggie_r
+# define FLAG_A	g_fl.flags.a
+# define FLAG_R	g_fl.flags.r
+# define FLAG_T	g_fl.flags.t
+
 typedef struct			s_flags {
 	char				l;
 	char				biggie_r;
 	char				a;
 	char				r;
 	char				t;
-	char				sudoku;
 }						t_flags;
 
 typedef struct			s_fl {
@@ -47,7 +52,7 @@ typedef struct			s_dir {
 	u_quad_t			blocks_num;
 }						t_dir;
 
-t_fl					*g_fl;
+t_fl					g_fl;
 
 /*
 **	check_bonus.c
@@ -78,5 +83,11 @@ char					**read_sudoku_file(int argc, char **argv);
 */
 
 void					schone(void);
+
+/*
+**	check_flags.c
+*/
+
+void    				ft_check_real_flags(int argc, char **argv);
 
 #endif

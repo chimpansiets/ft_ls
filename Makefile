@@ -6,21 +6,22 @@
 #    By: svoort <svoort@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/28 13:01:37 by svoort         #+#    #+#                 #
-#    Updated: 2019/08/20 15:04:09 by svoort        ########   odam.nl          #
+#    Updated: 2019/08/20 16:39:22 by svoort        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -g -Wall -Wextra -Werror -I includes/
 MKEX = gcc $(FLAGS) -o
 _BONUS = check_bonus.c solve_sudoku.c read_sudoku_input.c
-_USEFUL = main.c ft_error.c
-BONUS = $(addprefix ./bonus/, $(_BONUS))
-USEFUL = $(addprefix ./useful/, $(_USEFUL))
+_USEFUL = main.c ft_error.c check_flags.c
+BONUS = $(addprefix bonus/, $(_BONUS))
+USEFUL = $(addprefix useful/, $(_USEFUL))
 _SRC = $(BONUS) $(USEFUL)
 SRC = $(addprefix ./srcs/, $(_SRC))
 OBJECT = $(SRC:.c=.o)
 COMP = gcc -c
 FT_LS = ft_ls
+OBJDIR = ./obj
 
 # Colors
 RED				= \033[31;1m
@@ -35,6 +36,11 @@ CLEAR			= "\033[K"
 
 all : $(FT_LS)
 
+%.o : %.c
+	@echo $<
+	@echo $@
+	@$(COMP) $(FLAGS) $< -o $@
+
 $(FT_LS) : $(OBJECT)
 	@make -C libft/
 	@printf "$(RED)FT_LS building...\r$(END_C)"
@@ -42,14 +48,9 @@ $(FT_LS) : $(OBJECT)
 	@$(MKEX) $(FT_LS) $(OBJECT) -L libft/ -lft
 	@printf "\r" && printf $(CLEAR) && printf "$(GREEN)FT_LS built!\n$(END_C)"
 
-$(OBJECT) :
-	@make -C libft/
-	@$(COMP) $(SRC) $(FLAGS) -I libft/
-
 clean :
 	@make clean -C libft/
 	@/bin/rm -f $(OBJECT)
-
 
 fclean : clean
 	@make fclean -C libft/

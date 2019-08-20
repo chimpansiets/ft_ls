@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:05 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/20 14:44:54 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/20 16:04:12 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int 					main(int argc, char **argv)
 {
 	int		bonus;
 
-	if (!(g_fl = (t_fl*)ft_memalloc(sizeof(t_fl))))
-		ft_error("Nope, kan lekker niet mallocennnnnn.\n");
 	bonus = parse_flags(argc, argv);
+	ft_printf("%i%i%i%i%i\n", FLAG_L, FLAG_BIG_R, \
+			FLAG_A, FLAG_R, FLAG_T);
 	if (!bonus)
 	{
-		print_files(argc, argv);
+		// print_files(argc, argv);
 	}
 	return (argc);
 }
