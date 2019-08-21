@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/20 16:56:01 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/21 16:20:37 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <grp.h>
 # include <pwd.h>
 # include <dirent.h>
 # include <stdbool.h>
@@ -88,12 +89,31 @@ void					schone(void);
 **	check_flags.c
 */
 
-void    				ft_check_real_flags(int argc, char **argv);
+void					ft_check_real_flags(int argc, char **argv);
 
 /*
 **	print_files.c
 */
 
-void    				print_files(int argc, char **argv);
+void					print_files(char *folder);
+
+/*
+**	get_folders.c
+*/
+
+void					print_folders(char **folders);
+char					**get_folders(int argc, char **argv);
+
+/*
+**	get_path.c
+*/
+
+char					*get_path(char *folder, char *dir_name);
+
+/*
+**	print_file.c
+*/
+
+void					ft_printfile(char *folder, struct dirent *dir);
 
 #endif

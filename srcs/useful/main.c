@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:05 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/20 16:50:37 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/21 15:48:07 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ static inline int	parse_flags(int argc, char **argv)
 int 					main(int argc, char **argv)
 {
 	int		bonus;
+	int		i;
+	char	**folders_to_print;
 
+	i = 0;
 	bonus = parse_flags(argc, argv);
-	ft_printf("%i%i%i%i%i\n", FLAG_L, FLAG_BIG_R, \
-			FLAG_A, FLAG_R, FLAG_T);
 	if (!bonus)
 	{
-		print_files(argc, argv);
+		folders_to_print = get_folders(argc, argv);
+		while (folders_to_print[i] != NULL)
+			print_files(folders_to_print[i++]);
 	}
+	// free_all();
 	return (argc);
 }
