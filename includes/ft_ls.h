@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/20 16:03:07 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/20 16:56:01 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,11 @@ void					schone(void);
 */
 
 void    				ft_check_real_flags(int argc, char **argv);
+
+/*
+**	print_files.c
+*/
+
+void    				print_files(int argc, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 15:05:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/20 15:17:54 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/20 16:43:07 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void    parse_flags(char *flags)
             g_fl.flags.r = 1;
         else if (flags[i] == 't')
             g_fl.flags.t = 1;
+        else
+            ft_error("ls: illegal option -- z\nusage: ls [-lRart] [file ...]\n");
         i++;
     }
 }

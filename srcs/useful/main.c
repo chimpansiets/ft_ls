@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:05 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/20 16:04:12 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/20 16:50:37 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static inline int	parse_flags(int argc, char **argv)
 
 	index = 1;
 	if (argc < 2)
-		return (1);
+		return (0);
 	if (!ft_check_bonus_flags(argc, argv))
 	{
 		ft_check_real_flags(argc, argv);
@@ -38,7 +38,7 @@ int 					main(int argc, char **argv)
 			FLAG_A, FLAG_R, FLAG_T);
 	if (!bonus)
 	{
-		// print_files(argc, argv);
+		print_files(argc, argv);
 	}
 	return (argc);
 }

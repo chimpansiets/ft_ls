@@ -6,14 +6,14 @@
 #    By: svoort <svoort@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/28 13:01:37 by svoort         #+#    #+#                 #
-#    Updated: 2019/08/20 16:39:22 by svoort        ########   odam.nl          #
+#    Updated: 2019/08/20 16:49:15 by svoort        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -g -Wall -Wextra -Werror -I includes/
 MKEX = gcc $(FLAGS) -o
 _BONUS = check_bonus.c solve_sudoku.c read_sudoku_input.c
-_USEFUL = main.c ft_error.c check_flags.c
+_USEFUL = main.c ft_error.c check_flags.c print_files.c
 BONUS = $(addprefix bonus/, $(_BONUS))
 USEFUL = $(addprefix useful/, $(_USEFUL))
 _SRC = $(BONUS) $(USEFUL)
@@ -37,8 +37,6 @@ CLEAR			= "\033[K"
 all : $(FT_LS)
 
 %.o : %.c
-	@echo $<
-	@echo $@
 	@$(COMP) $(FLAGS) $< -o $@
 
 $(FT_LS) : $(OBJECT)
