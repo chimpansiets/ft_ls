@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 15:58:15 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/21 16:24:12 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/21 16:44:43 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,17 @@ static void	print_owner_group(struct stat file_stat)
 	pw = getpwuid(file_stat.st_uid);
 	gr = getgrgid(file_stat.st_gid);
 
-	ft_printf("%s\t%s\n", pw->pw_name, gr->gr_name);
+	ft_printf("%s\t%s ", pw->pw_name, gr->gr_name);
+}
+
+static void	print_date_time(struct stat file_stat)
+{
+	struct tm	*time;
+
+	time = gmtime(&(file_stat.st_mtime));
+	ft_printf("%i ", time->tm_wday);
+	ft_printf("%i ", time->tm_mon);
+	ft_printf("%i \n", time->tm_mday);
 }
 
 void	print_long_format(char *folder, struct dirent *dir)
@@ -49,6 +59,8 @@ void	print_long_format(char *folder, struct dirent *dir)
 	print_permissions(file_stat);
 	ft_printf("%4i ", file_stat.st_nlink);
 	print_owner_group(file_stat);
+	ft_printf("%6i ", file_stat.st_size);
+	print_date_time(file_stat);
 }
 
 void	print_short_format(struct dirent *dir)
