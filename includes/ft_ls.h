@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/22 11:42:45 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/22 15:21:54 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,11 @@ void					print_blocks(char *folder);
 */
 
 void					free_all(char **folders_to_free);
+
+/*
+**	solve_shop.c
+*/
+
+void					solve_shop(void);
 
 #endif
