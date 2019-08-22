@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 13:59:20 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/21 14:03:02 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/22 11:49:11 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_path(char *folder, char *dir_name)
 	if (folder[ft_strlen(folder) - 1] != '/')
 	{
 		path = ft_strjoin(folder, "/");
-		path = ft_strjoin(path, dir_name);
+		path = ft_joinfree(path, dir_name, 1);
 	}
 	else
 		path = ft_strjoin(folder, dir_name);

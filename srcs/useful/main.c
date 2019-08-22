@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:05 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/21 15:48:07 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/22 13:54:13 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ int 					main(int argc, char **argv)
 	{
 		folders_to_print = get_folders(argc, argv);
 		while (folders_to_print[i] != NULL)
-			print_files(folders_to_print[i++]);
+		{
+			print_files(folders_to_print[i]);
+			i++;
+		}
+		free_all(folders_to_print);
 	}
-	// free_all();
 	return (argc);
 }

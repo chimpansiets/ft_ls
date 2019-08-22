@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 15:58:15 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/21 16:44:43 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/22 11:48:32 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static void	print_permissions(struct stat file_stat)
 {
-	ft_printf( (S_ISDIR(file_stat.st_mode)) ? "d" : "-");
-	ft_printf( (file_stat.st_mode & S_IRUSR) ? "r" : "-");
-	ft_printf( (file_stat.st_mode & S_IWUSR) ? "w" : "-");
-	ft_printf( (file_stat.st_mode & S_IXUSR) ? "x" : "-");
-	ft_printf( (file_stat.st_mode & S_IRGRP) ? "r" : "-");
-	ft_printf( (file_stat.st_mode & S_IWGRP) ? "w" : "-");
-	ft_printf( (file_stat.st_mode & S_IXGRP) ? "x" : "-");
-	ft_printf( (file_stat.st_mode & S_IROTH) ? "r" : "-");
-	ft_printf( (file_stat.st_mode & S_IWOTH) ? "w" : "-");
-	ft_printf( (file_stat.st_mode & S_IXOTH) ? "x" : "-");
+	ft_printf((S_ISDIR(file_stat.st_mode)) ? "d" : "-");
+	ft_printf((file_stat.st_mode & S_IRUSR) ? "r" : "-");
+	ft_printf((file_stat.st_mode & S_IWUSR) ? "w" : "-");
+	ft_printf((file_stat.st_mode & S_IXUSR) ? "x" : "-");
+	ft_printf((file_stat.st_mode & S_IRGRP) ? "r" : "-");
+	ft_printf((file_stat.st_mode & S_IWGRP) ? "w" : "-");
+	ft_printf((file_stat.st_mode & S_IXGRP) ? "x" : "-");
+	ft_printf((file_stat.st_mode & S_IROTH) ? "r" : "-");
+	ft_printf((file_stat.st_mode & S_IWOTH) ? "w" : "-");
+	ft_printf((file_stat.st_mode & S_IXOTH) ? "x" : "-");
 	ft_printf(" ");
 }
 
@@ -40,12 +40,35 @@ static void	print_owner_group(struct stat file_stat)
 
 static void	print_date_time(struct stat file_stat)
 {
-	struct tm	*time;
+	struct tm	tm_file;
+	struct tm	tm_now;
+	char		time_str[64];
+	time_t		now;
 
-	time = gmtime(&(file_stat.st_mtime));
-	ft_printf("%i ", time->tm_wday);
-	ft_printf("%i ", time->tm_mon);
-	ft_printf("%i \n", time->tm_mday);
+	now = time(NULL);
+
+	localtime_r(&file_stat.st_mtime, &tm_file);
+	localtime_r(&file_stat.st_mtime, &tm_now);
+	if (tm_file.tm_year == tm_now.tm_year)
+	{
+		strftime(time_str, sizeof(time_str), "%b %e %H:%M", &tm_file);
+		ft_printf("%s ", time_str);
+	}
+	else
+	{
+		strftime(time_str, sizeof(time_str), "%b %e  %Y", &tm_file);
+		ft_printf("%s ", time_str);
+	}
+}
+
+void	ft_printname(struct dirent *dir, struct stat file_stat)
+{
+	if (dir->d_type == DT_DIR && (file_stat.st_mode & S_IXOTH) == 1)
+		ft_printf("\e[1;36m");
+	else if ((file_stat.st_mode & S_IXOTH) == 1)
+		ft_printf("\e[0;31m");
+	ft_printf("%s\n", dir->d_name);
+	ft_printf("\e[0m");
 }
 
 void	print_long_format(char *folder, struct dirent *dir)
@@ -61,6 +84,8 @@ void	print_long_format(char *folder, struct dirent *dir)
 	print_owner_group(file_stat);
 	ft_printf("%6i ", file_stat.st_size);
 	print_date_time(file_stat);
+	ft_printname(dir, file_stat);
+	free(path);
 }
 
 void	print_short_format(struct dirent *dir)

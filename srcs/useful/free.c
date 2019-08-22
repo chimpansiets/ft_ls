@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_bonus.c                                      :+:    :+:            */
+/*   free.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/02 15:31:18 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/22 14:19:48 by svoort        ########   odam.nl         */
+/*   Created: 2019/08/22 11:41:33 by svoort         #+#    #+#                */
+/*   Updated: 2019/08/22 11:44:09 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-#define SUDOKU		"sudoku"
-#define KATSU		"katsu"
-
-int		ft_check_bonus_flags(int argc, char **argv)
+void	free_all(char **folders_to_free)
 {
-	if (ft_strequ(&argv[1][1], SUDOKU))
-	{
-		solve_sudoku(argc, argv);
-		return (1);
-	}
-	else if (ft_strequ(&argv[1][1], KATSU))
-	{
-		solve_katsu(argc, argv);
-		return (1);
-	}
-	return (0);
+	int		i;
+
+	i = 0;
+	while (folders_to_free[i])
+		free(folders_to_free[i++]);
+	free(folders_to_free);
 }

@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/21 16:33:11 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/22 11:42:45 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,11 @@ void					ft_printfile(char *folder, struct dirent *dir);
 */
 
 void					print_blocks(char *folder);
+
+/*
+**	free.c
+*/
+
+void					free_all(char **folders_to_free);
 
 #endif
