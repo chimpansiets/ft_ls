@@ -6,17 +6,27 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 16:48:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/22 14:11:27 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/23 13:51:47 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+static void	add_or_init(t_list **list, char *content)
+{
+	if (!(*list))
+		*list = ft_lstnew(content, ft_strlen(content) + 1);
+	else
+		ft_lslstadd(list, ft_lstnew(content, ft_strlen(content) + 1));
+}
 
 void	print_files(char *folder)
 {
 	DIR				*d;
 	struct dirent	*dir;
 	char			**paths;
+	char			*tmp_line;
+	t_list			*lines;
 	int				i;
 
 	paths = (char**)ft_memalloc(sizeof(char*) * 1000);
@@ -31,13 +41,14 @@ void	print_files(char *folder)
 			{
 				if (dir->d_type == DT_DIR && g_fl.flags.biggie_r == 1 && \
 				!ft_strequ(dir->d_name, ".") && !ft_strequ(dir->d_name, ".."))
-				{
-					paths[i] = get_path(folder, dir->d_name);
-					i++;
-				}
-				ft_printfile(folder, dir);
+					paths[i++] = get_path(folder, dir->d_name);
+				tmp_line = ft_printfile(folder, dir);
+				add_or_init(&lines, tmp_line);
+				free(tmp_line);
 			}
 		}
+		sort_list(&lines);
+		print_list(lines);
 		closedir(d);
 	}
 	else

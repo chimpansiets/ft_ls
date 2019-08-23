@@ -6,42 +6,48 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 15:58:15 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/22 11:48:32 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/23 13:40:13 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	print_permissions(struct stat file_stat)
+static char	*print_permissions(struct stat file_stat)
 {
-	ft_printf((S_ISDIR(file_stat.st_mode)) ? "d" : "-");
-	ft_printf((file_stat.st_mode & S_IRUSR) ? "r" : "-");
-	ft_printf((file_stat.st_mode & S_IWUSR) ? "w" : "-");
-	ft_printf((file_stat.st_mode & S_IXUSR) ? "x" : "-");
-	ft_printf((file_stat.st_mode & S_IRGRP) ? "r" : "-");
-	ft_printf((file_stat.st_mode & S_IWGRP) ? "w" : "-");
-	ft_printf((file_stat.st_mode & S_IXGRP) ? "x" : "-");
-	ft_printf((file_stat.st_mode & S_IROTH) ? "r" : "-");
-	ft_printf((file_stat.st_mode & S_IWOTH) ? "w" : "-");
-	ft_printf((file_stat.st_mode & S_IXOTH) ? "x" : "-");
-	ft_printf(" ");
+	char	*line;
+
+	line = ft_strdup((S_ISDIR(file_stat.st_mode)) ? "d" : "-");
+	line = ft_joinfree(line, (file_stat.st_mode & S_IRUSR) ? "r" : "-", 1);
+	line = ft_joinfree(line, (file_stat.st_mode & S_IWUSR) ? "w" : "-", 1);
+	line = ft_joinfree(line, (file_stat.st_mode & S_IXUSR) ? "x" : "-", 1);
+	line = ft_joinfree(line, (file_stat.st_mode & S_IRGRP) ? "r" : "-", 1);
+	line = ft_joinfree(line, (file_stat.st_mode & S_IWGRP) ? "w" : "-", 1);
+	line = ft_joinfree(line, (file_stat.st_mode & S_IXGRP) ? "x" : "-", 1);
+	line = ft_joinfree(line, (file_stat.st_mode & S_IROTH) ? "r" : "-", 1);
+	line = ft_joinfree(line, (file_stat.st_mode & S_IWOTH) ? "w" : "-", 1);
+	line = ft_joinfree(line, (file_stat.st_mode & S_IXOTH) ? "x" : "-", 1);
+	line = ft_joinfree(line, " ", 1);
+	return (line);
 }
 
-static void	print_owner_group(struct stat file_stat)
+static char	*print_owner_group(struct stat file_stat)
 {
+	char			*ret;
 	struct passwd	*pw;
 	struct group	*gr;
 
 	pw = getpwuid(file_stat.st_uid);
 	gr = getgrgid(file_stat.st_gid);
-
-	ft_printf("%s\t%s ", pw->pw_name, gr->gr_name);
+	ret = (char *)ft_memalloc(sizeof(char) * 256);
+	sprintf(ret, "%s\t%s ", pw->pw_name, gr->gr_name);
+	return (ret);
 }
 
-static void	print_date_time(struct stat file_stat)
+static char	*print_date_time(struct stat file_stat)
 {
 	struct tm	tm_file;
 	struct tm	tm_now;
+	char		*ret;
 	char		time_str[64];
 	time_t		now;
 
@@ -49,57 +55,93 @@ static void	print_date_time(struct stat file_stat)
 
 	localtime_r(&file_stat.st_mtime, &tm_file);
 	localtime_r(&file_stat.st_mtime, &tm_now);
+	ret = ft_memalloc(sizeof(char) * 256);
 	if (tm_file.tm_year == tm_now.tm_year)
 	{
 		strftime(time_str, sizeof(time_str), "%b %e %H:%M", &tm_file);
-		ft_printf("%s ", time_str);
+		sprintf(ret, "%s ", time_str);
+		return (ret);
 	}
 	else
 	{
 		strftime(time_str, sizeof(time_str), "%b %e  %Y", &tm_file);
-		ft_printf("%s ", time_str);
+		sprintf(ret, "%s ", time_str);
+		return (ret);
 	}
 }
 
-void	ft_printname(struct dirent *dir, struct stat file_stat)
+static char	*ft_printname(struct dirent *dir, struct stat file_stat)
 {
+	char	*ret;
+
+	ret = NULL;
 	if (dir->d_type == DT_DIR && (file_stat.st_mode & S_IXOTH) == 1)
-		ft_printf("\e[1;36m");
+		ret = ft_strdup("\e[1;36m");
 	else if ((file_stat.st_mode & S_IXOTH) == 1)
-		ft_printf("\e[0;31m");
-	ft_printf("%s\n", dir->d_name);
-	ft_printf("\e[0m");
+		ret = ft_strdup("\e[0;31m");	
+	if (ret)
+	{
+		ret = ft_joinfree(ret, dir->d_name, 1);
+		ret = ft_joinfree(ret, "\e[0m", 1);
+	}
+	else
+		ret = ft_strdup(dir->d_name);
+	
+	return (ret);
 }
 
-void	print_long_format(char *folder, struct dirent *dir)
+char	*print_long_format(char *folder, struct dirent *dir) // TERRIBLE CODE!! DON'T LOOK PLS!!
 {
 	struct stat	file_stat;
 	char		*path;
+	char		*line;
+	char		*tmp;
 
+	line = ft_memalloc(1);
 	path = get_path(folder, dir->d_name);
 	if (stat(path, &file_stat) < 0)
 		ft_error("Error getting file information (-l)\n");
-	print_permissions(file_stat);
-	ft_printf("%4i ", file_stat.st_nlink);
-	print_owner_group(file_stat);
-	ft_printf("%6i ", file_stat.st_size);
-	print_date_time(file_stat);
-	ft_printname(dir, file_stat);
+	tmp = print_permissions(file_stat);
+	line = ft_joinfree(line, tmp, 3);
+	tmp = ft_memalloc(sizeof(char) * 256);
+	sprintf(tmp, "%4i ", file_stat.st_nlink);
+	line = ft_joinfree(line, tmp, 3);
+	tmp = print_owner_group(file_stat);
+	line = ft_joinfree(line, tmp, 3);
+	tmp = (char *)ft_memalloc(sizeof(char) * 256);
+	sprintf(tmp, "%6lli ", file_stat.st_size);
+	line = ft_joinfree(line, tmp, 3);
+	tmp = print_date_time(file_stat);
+	line = ft_joinfree(line, tmp, 3);
+	tmp = ft_printname(dir, file_stat);
+	line = ft_joinfree(line, tmp, 3);
 	free(path);
+	return (line);
 }
 
-void	print_short_format(struct dirent *dir)
+char	*print_short_format(struct dirent *dir)
 {
+	char	*line;
+
 	if (dir->d_type == DT_DIR)
-		ft_printf("\e[0;34m%s\n\e[0m", dir->d_name);
+	{
+		line = ft_strdup("\e[1;36m");
+		line = ft_joinfree(line, dir->d_name, 1);
+		line = ft_joinfree(line, "\e[0m", 1);
+	}
 	else
-		ft_printf("%s\n", dir->d_name);
+		line = ft_strdup(dir->d_name);
+	return (line);
 }
 
-void	ft_printfile(char *folder, struct dirent *dir)
+char	*ft_printfile(char *folder, struct dirent *dir)
 {
+	char	*line;
+
 	if (g_fl.flags.l == 1)
-		print_long_format(folder, dir);
+		line = print_long_format(folder, dir);
 	else
-		print_short_format(dir);
+		line = print_short_format(dir);
+
+	return (line);
 }
