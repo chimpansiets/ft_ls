@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 15:58:15 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/28 13:30:20 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/28 14:49:29 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*print_owner_group(struct stat file_stat)
 	return (ret);
 }
 
-static char	*print_date_time(struct stat file_stat)
+static char	*print_date_time(struct stat file_stat, t_file *file)
 {
 	struct tm	tm_file;
 	struct tm	tm_now;
@@ -56,6 +56,7 @@ static char	*print_date_time(struct stat file_stat)
 	localtime_r(&file_stat.st_mtime, &tm_file);
 	localtime_r(&file_stat.st_mtime, &tm_now);
 	ret = ft_memalloc(sizeof(char) * 256);
+	file->time = tm_file;
 	if (tm_file.tm_year == tm_now.tm_year)
 	{
 		strftime(time_str, sizeof(time_str), "%b %e %H:%M", &tm_file);
@@ -90,9 +91,10 @@ static char	*ft_printname(struct dirent *dir, struct stat file_stat)
 	return (ret);
 }
 
-char	*print_long_format(char *folder, struct dirent *dir) // TERRIBLE CODE!! DON'T LOOK PLS!!
+static t_file	print_long_format(char *folder, struct dirent *dir) // TERRIBLE CODE!! DON'T LOOK PLS!!
 {
 	struct stat	file_stat;
+	t_file		file;
 	char		*path;
 	char		*line;
 	char		*tmp;
@@ -111,15 +113,16 @@ char	*print_long_format(char *folder, struct dirent *dir) // TERRIBLE CODE!! DON
 	tmp = (char *)ft_memalloc(sizeof(char) * 256);
 	sprintf(tmp, "%6lli ", file_stat.st_size);
 	line = ft_joinfree(line, tmp, 3);
-	tmp = print_date_time(file_stat);
+	tmp = print_date_time(file_stat, &file);
 	line = ft_joinfree(line, tmp, 3);
 	tmp = ft_printname(dir, file_stat);
 	line = ft_joinfree(line, tmp, 3);
 	free(path);
-	return (line);
+	file.tmp_line = line;
+	return (file);
 }
 
-t_file	print_short_format(struct dirent *dir)
+static t_file	print_short_format(struct dirent *dir)
 {
 	t_file		file;
 	char		*line;
@@ -134,14 +137,10 @@ t_file	print_short_format(struct dirent *dir)
 	}
 	else
 		line = ft_strdup(dir->d_name);
+	stat(dir->d_name, &file_stat);
 	localtime_r(&file_stat.st_mtime, &time);
 	file.tmp_line = line;
 	file.time = time;
-	ft_printf("%i\n", file.time.tm_year);
-	ft_printf("%i\n", file.time.tm_yday);
-	ft_printf("%i\n", file.time.tm_hour);
-	ft_printf("%i\n", file.time.tm_min);
-	ft_printf("%i\n", file.time.tm_sec);
 	return (file);
 }
 
@@ -150,7 +149,7 @@ t_file	ft_printfile(char *folder, struct dirent *dir)
 	t_file	file;
 
 	if (g_fl.flags.l == 1)
-		file.tmp_line = print_long_format(folder, dir);
+		file = print_long_format(folder, dir);
 	else
 		file = print_short_format(dir);
 
