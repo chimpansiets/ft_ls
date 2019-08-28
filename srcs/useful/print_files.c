@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 16:48:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/28 13:27:28 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/28 15:33:33 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	print_files(char *folder)
 				add_or_init(&lines, tmp_file.tmp_line);
 			}
 		}
-		// sort_list(&lines);
+		sort_list(&lines);
 		print_list(lines);
 		closedir(d);
 	}
