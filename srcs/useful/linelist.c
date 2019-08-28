@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstnew.c                                        :+:    :+:            */
+/*   linelist.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/18 10:29:49 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/28 12:42:07 by svoort        ########   odam.nl         */
+/*   Created: 2019/08/28 13:00:49 by svoort         #+#    #+#                */
+/*   Updated: 2019/08/28 13:07:55 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ls.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+void	ft_linelstadd(t_linelist **alst, t_linelist *new)
 {
-	t_list	*new;
+	if (alst != NULL && new != NULL)
+	{
+		new->next = *alst;
+		*alst = new;
+	}
+}
 
-	new = (t_list*)ft_memalloc(sizeof(t_list));
+t_linelist	*ft_linelstnew(void const *content, size_t content_size)
+{
+	t_linelist	*new;
+
+	new = (t_linelist*)ft_memalloc(sizeof(t_linelist));
 	if (new == NULL)
 		return (NULL);
 	if (content == NULL)
@@ -26,7 +35,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		if (!(new->content = (t_list*)ft_memalloc(content_size)))
+		if (!(new->content = (char*)ft_memalloc(content_size)))
 			return (NULL);
 		ft_memcpy(new->content, content, content_size);
 		new->content_size = content_size;

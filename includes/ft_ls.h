@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/23 13:43:24 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/28 13:11:48 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,21 @@ typedef struct			s_dir {
 	char				**names;
 	u_quad_t			blocks_num;
 }						t_dir;
+
+typedef struct			s_linelist
+{
+	struct tm			time;
+	char				*content;
+	size_t				content_size;
+	struct s_linelist	*next;
+}						t_linelist;
+
+typedef struct			s_file
+{
+	char				*tmp_line;
+	struct tm			time;
+}						t_file;
+
 
 t_fl					g_fl;
 
@@ -114,7 +129,7 @@ char					*get_path(char *folder, char *dir_name);
 **	print_file.c
 */
 
-char					*ft_printfile(char *folder, struct dirent *dir);
+t_file					ft_printfile(char *folder, struct dirent *dir);
 
 /*
 **	print_blocks.c
@@ -133,5 +148,12 @@ void					free_all(char **folders_to_free);
 */
 
 void					solve_shop(void);
+
+/*
+**	linelist.c
+*/
+
+t_linelist				*ft_linelstnew(void const *content, size_t content_size);
+void					ft_linelstadd(t_linelist **alst, t_linelist *new);
 
 #endif

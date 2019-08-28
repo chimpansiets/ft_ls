@@ -6,18 +6,30 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 16:48:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/23 13:51:47 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/28 13:27:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static void	add_or_init(t_list **list, char *content)
+static void	add_or_init(t_linelist **list, char *content)
 {
 	if (!(*list))
-		*list = ft_lstnew(content, ft_strlen(content) + 1);
+		*list = ft_linelstnew(content, ft_strlen(content) + 1);
 	else
-		ft_lslstadd(list, ft_lstnew(content, ft_strlen(content) + 1));
+		ft_linelstadd(list, ft_linelstnew(content, ft_strlen(content) + 1));
+}
+
+static void	print_list(t_linelist *list)
+{
+	t_linelist	*tmp;
+
+	tmp = list;
+	while (tmp)
+	{
+		ft_printf("%s\n", tmp->content);
+		tmp = tmp->next;
+	}
 }
 
 void	print_files(char *folder)
@@ -25,16 +37,17 @@ void	print_files(char *folder)
 	DIR				*d;
 	struct dirent	*dir;
 	char			**paths;
-	char			*tmp_line;
-	t_list			*lines;
+	t_file			tmp_file;
+	t_linelist		*lines;
 	int				i;
 
 	paths = (char**)ft_memalloc(sizeof(char*) * 1000);
+	lines = NULL;
 	d = opendir(folder);
 	i = 0;
 	if (d)
 	{
-		ft_printf("\e[1;35m%s:\n\e[0m", folder); // after this we can get stat() of folder and then print st_blocks.
+		ft_printf("%s: \n\n", folder);
 		while ((dir = readdir(d)) != NULL)
 		{
 			if (dir->d_name[0] != '.' || g_fl.flags.a == 1)
@@ -42,12 +55,11 @@ void	print_files(char *folder)
 				if (dir->d_type == DT_DIR && g_fl.flags.biggie_r == 1 && \
 				!ft_strequ(dir->d_name, ".") && !ft_strequ(dir->d_name, ".."))
 					paths[i++] = get_path(folder, dir->d_name);
-				tmp_line = ft_printfile(folder, dir);
-				add_or_init(&lines, tmp_line);
-				free(tmp_line);
+				tmp_file = ft_printfile(folder, dir);
+				add_or_init(&lines, tmp_file.tmp_line);
 			}
 		}
-		sort_list(&lines);
+		// sort_list(&lines);
 		print_list(lines);
 		closedir(d);
 	}

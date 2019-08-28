@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 15:58:15 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/23 13:40:13 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/28 13:30:20 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,12 @@ char	*print_long_format(char *folder, struct dirent *dir) // TERRIBLE CODE!! DON
 	return (line);
 }
 
-char	*print_short_format(struct dirent *dir)
+t_file	print_short_format(struct dirent *dir)
 {
-	char	*line;
+	t_file		file;
+	char		*line;
+	struct stat	file_stat;
+	struct tm	time;
 
 	if (dir->d_type == DT_DIR)
 	{
@@ -131,17 +134,25 @@ char	*print_short_format(struct dirent *dir)
 	}
 	else
 		line = ft_strdup(dir->d_name);
-	return (line);
+	localtime_r(&file_stat.st_mtime, &time);
+	file.tmp_line = line;
+	file.time = time;
+	ft_printf("%i\n", file.time.tm_year);
+	ft_printf("%i\n", file.time.tm_yday);
+	ft_printf("%i\n", file.time.tm_hour);
+	ft_printf("%i\n", file.time.tm_min);
+	ft_printf("%i\n", file.time.tm_sec);
+	return (file);
 }
 
-char	*ft_printfile(char *folder, struct dirent *dir)
+t_file	ft_printfile(char *folder, struct dirent *dir)
 {
-	char	*line;
+	t_file	file;
 
 	if (g_fl.flags.l == 1)
-		line = print_long_format(folder, dir);
+		file.tmp_line = print_long_format(folder, dir);
 	else
-		line = print_short_format(dir);
+		file = print_short_format(dir);
 
-	return (line);
+	return (file);
 }

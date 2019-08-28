@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/23 13:51:56 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/23 13:52:23 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/26 11:56:14 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	sort_list(t_list **alst)
 {
-	
+	if (g_fl.flags.t)
+		sort_time();
 }
