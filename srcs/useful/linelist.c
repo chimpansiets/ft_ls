@@ -6,13 +6,13 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/28 13:00:49 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 09:28:25 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 10:00:41 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_linelstadd(t_linelist **alst, t_linelist *new)
+void		ft_linelstadd(t_linelist **alst, t_linelist *new)
 {
 	if (alst != NULL && new != NULL)
 	{
@@ -22,7 +22,8 @@ void	ft_linelstadd(t_linelist **alst, t_linelist *new)
 	}
 }
 
-t_linelist	*ft_linelstnew(void const *content, size_t content_size, struct tm time)
+t_linelist	*ft_linelstnew(void const *content, \
+			size_t content_size, struct tm time)
 {
 	t_linelist	*new;
 

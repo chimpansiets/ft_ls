@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 18:52:01 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/20 14:35:32 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 09:51:15 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,5 @@ void	solve_sudoku(int argc, char **argv)
 	char		**arguments;
 
 	arguments = read_sudoku_file(argc, argv);
-	// Eerste argument moet filename worden, nu geen zin.
 	execve("/Users/svoort/.brew/bin/sudoku_solver", arguments, environ);
 }

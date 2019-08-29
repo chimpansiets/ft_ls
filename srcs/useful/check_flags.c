@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 15:05:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/23 11:37:04 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 09:55:54 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ void	parse_flags(char *flags)
 		else if (flags[i] == 'R')
 			g_fl.flags.biggie_r = 1;
 		else if (flags[i] == 'a')
-			g_fl.flags.a= 1;
+			g_fl.flags.a = 1;
 		else if (flags[i] == 'r')
 			g_fl.flags.r = 1;
 		else if (flags[i] == 't')
 			g_fl.flags.t = 1;
 		else
-			ft_error("ls: illegal option -- z\nusage: ls [-lRart] [file ...]\n");
+			ft_error(\
+			"ls: illegal option -- z\nusage: ls [-lRart] [file ...]\n");
 		i++;
 	}
 }

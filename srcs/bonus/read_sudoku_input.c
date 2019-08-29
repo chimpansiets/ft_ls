@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 19:04:33 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/11 13:55:59 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 09:58:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char			**ft_strsplit_with_char(char const *s, char c)
 	return (str2);
 }
 
-char	**read_sudoku_file(int argc, char **argv)
+char			**read_sudoku_file(int argc, char **argv)
 {
 	char	**field;
 	char	**temp;
@@ -66,7 +66,8 @@ char	**read_sudoku_file(int argc, char **argv)
 
 	i = 0;
 	if (argc < 3)
-		ft_error("Oopsie! No sudoku file given. (./ft_ls -sudoku [sudoku_file])\n");
+		ft_error(\
+		"Oopsie! No sudoku file given. (./ft_ls -sudoku [sudoku_file])\n");
 	fd = open(argv[2], O_RDONLY);
 	field = (char**)ft_memalloc(sizeof(char*) * 10);
 	field[0] = ft_strdup("/Users/svoort/.brew/bin/sudoku_solver");

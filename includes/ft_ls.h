@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 09:34:25 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 09:50:46 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct			s_file
 	char				*tmp_line;
 	struct tm			time;
 }						t_file;
-
 
 t_fl					g_fl;
 
@@ -155,7 +154,8 @@ void					solve_shop(void);
 **	linelist.c
 */
 
-t_linelist				*ft_linelstnew(void const *content, size_t content_size, struct tm time);
+t_linelist				*ft_linelstnew(void const *content, \
+						size_t content_size, struct tm time);
 void					ft_linelstadd(t_linelist **alst, t_linelist *new);
 
 /*

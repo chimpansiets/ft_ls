@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/23 13:51:56 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 09:29:53 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 10:03:14 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	is_greater_than_next(t_linelist *elem)
 **	sorts files on time in ascending order.
 */
 
-static void swap(t_linelist *a, t_linelist *b)
+static void	swap(t_linelist *a, t_linelist *b)
 {
 	struct tm	time_tmp;
 	char		*content_tmp;
@@ -61,30 +61,31 @@ static void swap(t_linelist *a, t_linelist *b)
 	b->content_size = content_size_tmp;
 }
 
-static void	sort_time(t_linelist **alst) 
+static void	sort_time(t_linelist **alst)
 {
 	int				swapped;
 	t_linelist		*ptr1;
-	t_linelist		*lptr = NULL;
+	t_linelist		*lptr;
 
+	lptr = NULL;
 	if ((*alst) == NULL)
 		return ;
 	do
 	{
-		swapped = 0; 
-		ptr1 = (*alst); 
-		while (ptr1->next != lptr) 
+		swapped = 0;
+		ptr1 = (*alst);
+		while (ptr1->next != lptr)
 		{
-			if (is_greater_than_next(ptr1)) 
+			if (is_greater_than_next(ptr1))
 			{
-				swap(ptr1, ptr1->next); 
-				swapped = 1; 
+				swap(ptr1, ptr1->next);
+				swapped = 1;
 			}
-			ptr1 = ptr1->next; 
+			ptr1 = ptr1->next;
 		}
-		lptr = ptr1; 
+		lptr = ptr1;
 	}
-	while (swapped); 
+	while (swapped);
 }
 
 void	sort_list(t_linelist **alst)

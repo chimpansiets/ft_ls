@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 16:48:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 09:38:00 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 10:01:47 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static void	add_or_init(t_linelist **list, char *content, struct tm time)
 	if (!(*list))
 		*list = ft_linelstnew(content, ft_strlen(content) + 1, time);
 	else
-		ft_linelstadd(list, ft_linelstnew(content, ft_strlen(content) + 1, time));
+		ft_linelstadd(list, ft_linelstnew(content, \
+		ft_strlen(content) + 1, time));
 }
 
 static void	print_list(t_linelist *list)
@@ -42,7 +43,7 @@ static void	print_list(t_linelist *list)
 	}
 }
 
-void	print_files(char *folder)
+void		print_files(char *folder)
 {
 	DIR				*d;
 	struct dirent	*dir;

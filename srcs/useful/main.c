@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:05 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 09:34:54 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 09:59:03 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static inline int	parse_flags(int argc, char **argv)
 	return (1);
 }
 
-int 					main(int argc, char **argv)
+int					main(int argc, char **argv)
 {
 	int		bonus;
 	int		i;

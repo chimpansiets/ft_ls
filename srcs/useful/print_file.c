@@ -6,13 +6,13 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 15:58:15 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/28 14:49:29 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 10:04:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static char	*print_permissions(struct stat file_stat)
+static char		*print_permissions(struct stat file_stat)
 {
 	char	*line;
 
@@ -30,7 +30,7 @@ static char	*print_permissions(struct stat file_stat)
 	return (line);
 }
 
-static char	*print_owner_group(struct stat file_stat)
+static char		*print_owner_group(struct stat file_stat)
 {
 	char			*ret;
 	struct passwd	*pw;
@@ -43,7 +43,7 @@ static char	*print_owner_group(struct stat file_stat)
 	return (ret);
 }
 
-static char	*print_date_time(struct stat file_stat, t_file *file)
+static char		*print_date_time(struct stat file_stat, t_file *file)
 {
 	struct tm	tm_file;
 	struct tm	tm_now;
@@ -71,7 +71,7 @@ static char	*print_date_time(struct stat file_stat, t_file *file)
 	}
 }
 
-static char	*ft_printname(struct dirent *dir, struct stat file_stat)
+static char		*ft_printname(struct dirent *dir, struct stat file_stat)
 {
 	char	*ret;
 
@@ -144,7 +144,7 @@ static t_file	print_short_format(struct dirent *dir)
 	return (file);
 }
 
-t_file	ft_printfile(char *folder, struct dirent *dir)
+t_file			ft_printfile(char *folder, struct dirent *dir)
 {
 	t_file	file;
 
