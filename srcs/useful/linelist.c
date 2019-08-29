@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/28 13:00:49 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/28 13:07:55 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 09:28:25 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	ft_linelstadd(t_linelist **alst, t_linelist *new)
 	if (alst != NULL && new != NULL)
 	{
 		new->next = *alst;
+		(*alst)->prev = new;
 		*alst = new;
 	}
 }
 
-t_linelist	*ft_linelstnew(void const *content, size_t content_size)
+t_linelist	*ft_linelstnew(void const *content, size_t content_size, struct tm time)
 {
 	t_linelist	*new;
 
@@ -38,6 +39,7 @@ t_linelist	*ft_linelstnew(void const *content, size_t content_size)
 		if (!(new->content = (char*)ft_memalloc(content_size)))
 			return (NULL);
 		ft_memcpy(new->content, content, content_size);
+		new->time = time;
 		new->content_size = content_size;
 	}
 	new->next = NULL;
