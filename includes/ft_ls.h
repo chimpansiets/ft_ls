@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 09:50:46 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 11:25:40 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,9 @@ void					ft_check_real_flags(int argc, char **argv);
 **	print_files.c
 */
 
+void					print_list(t_linelist *list);
 void					print_files(char *folder);
+void					add_or_init(t_linelist **list, char *content, struct tm time);
 
 /*
 **	get_folders.c
@@ -129,6 +131,7 @@ char					*get_path(char *folder, char *dir_name);
 **	print_file.c
 */
 
+char					*ft_printname(struct dirent *dir, struct stat file_stat);
 t_file					ft_printfile(char *folder, struct dirent *dir);
 
 /*
@@ -163,5 +166,27 @@ void					ft_linelstadd(t_linelist **alst, t_linelist *new);
 */
 
 void					sort_list(t_linelist **alst);
+
+/*
+**	norminette1.c
+*/
+
+void					printname_norme(char **line, char **tmp, \
+						struct dirent **dir, struct stat *file_stat);
+char					*print_permissions(struct stat file_stat);
+char					*print_owner_group(struct stat file_stat);
+void					check_and_get_path(struct dirent **dir, \
+						char ***paths, int *i, char **folder);
+void					print_and_add_to_lines(char *folder, \
+						struct dirent *dir, t_linelist **lines);
+
+/*
+**	norminette2.c
+*/
+
+void					biggie_r_recursion(char **paths, t_linelist *lines);
+void					init_variables_to_reduce_lines(char ***paths, \
+						t_linelist **lines, DIR **d, char *folder);
+void					print_and_sort(t_linelist **lines);
 
 #endif

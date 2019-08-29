@@ -6,13 +6,13 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/23 13:51:56 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 10:03:14 by svoort        ########   odam.nl         */
+/*   Updated: 2019/08/29 10:53:41 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-static int	is_greater_than_next(t_linelist *elem)
+static int		is_greater_than_next(t_linelist *elem)
 {
 	if (elem->next)
 	{
@@ -44,7 +44,7 @@ static int	is_greater_than_next(t_linelist *elem)
 **	sorts files on time in ascending order.
 */
 
-static void	swap(t_linelist *a, t_linelist *b)
+static void		swap(t_linelist *a, t_linelist *b)
 {
 	struct tm	time_tmp;
 	char		*content_tmp;
@@ -61,7 +61,7 @@ static void	swap(t_linelist *a, t_linelist *b)
 	b->content_size = content_size_tmp;
 }
 
-static void	sort_time(t_linelist **alst)
+static void		sort_time(t_linelist **alst)
 {
 	int				swapped;
 	t_linelist		*ptr1;
@@ -70,7 +70,9 @@ static void	sort_time(t_linelist **alst)
 	lptr = NULL;
 	if ((*alst) == NULL)
 		return ;
-	do
+	swapped = 1;
+	ptr1 = (*alst);
+	while (swapped)
 	{
 		swapped = 0;
 		ptr1 = (*alst);
@@ -85,10 +87,9 @@ static void	sort_time(t_linelist **alst)
 		}
 		lptr = ptr1;
 	}
-	while (swapped);
 }
 
-void	sort_list(t_linelist **alst)
+void			sort_list(t_linelist **alst)
 {
 	if (g_fl.flags.t)
 		sort_time(alst);
