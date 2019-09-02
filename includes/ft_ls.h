@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/02 09:54:17 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/02 10:06:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,11 +190,12 @@ void					biggie_r_recursion(char **paths, t_linelist *lines);
 void					init_variables_to_reduce_lines(char ***paths, \
 						t_linelist **lines, DIR **d, char *folder);
 void					print_and_sort(t_linelist **lines);
+void					print_header(char *folder);
 
 /*
 **	block_size.c
 */
 
-int						get_block_size(char* directory);
+int						get_block_size(char *directory);
 
 #endif

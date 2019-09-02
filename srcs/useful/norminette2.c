@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/29 11:14:21 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 11:26:18 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/02 10:08:15 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ void	print_and_sort(t_linelist **lines)
 {
 	sort_list(lines);
 	print_list(*lines);
+}
+
+void	print_header(char *folder)
+{
+	ft_printf("%s: \n", folder);
+	if (g_fl.flags.l)
+		ft_printf("total %i\n", get_block_size(folder));
 }

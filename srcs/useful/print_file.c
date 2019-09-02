@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 15:58:15 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 10:52:58 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/02 10:15:54 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,21 @@ static t_file	print_short_format(struct dirent *dir)
 	struct stat	file_stat;
 	struct tm	time;
 
-	if (dir->d_type == DT_DIR)
+	stat(dir->d_name, &file_stat);
+	if (dir->d_type == DT_DIR && (file_stat.st_mode & S_IXOTH) == 1)
 	{
 		line = ft_strdup("\e[1;36m");
 		line = ft_joinfree(line, dir->d_name, 1);
 		line = ft_joinfree(line, "\e[0m", 1);
 	}
+	else if ((file_stat.st_mode & S_IXOTH) == 1)
+	{
+		line = ft_strdup("\e[0;31m");
+		line = ft_joinfree(line, dir->d_name, 1);
+		line = ft_joinfree(line, "\e[0m", 1);
+	}
 	else
 		line = ft_strdup(dir->d_name);
-	stat(dir->d_name, &file_stat);
 	localtime_r(&file_stat.st_mtime, &time);
 	file.tmp_line = line;
 	file.time = time;
