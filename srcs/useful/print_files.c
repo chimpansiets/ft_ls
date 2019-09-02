@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 16:48:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 11:25:26 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/02 09:55:08 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void		print_files(char *folder)
 	i = 0;
 	if (d)
 	{
-		ft_printf("%s: \n\n", folder);
+		ft_printf("%s: \n", folder);
+		ft_printf("total %i\n", get_block_size(folder));
 		while ((dir = readdir(d)) != NULL)
 		{
 			if (dir->d_name[0] != '.' || g_fl.flags.a == 1)

@@ -6,16 +6,16 @@
 #    By: svoort <svoort@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/28 13:01:37 by svoort         #+#    #+#                 #
-#    Updated: 2019/08/29 11:14:42 by svoort        ########   odam.nl          #
+#    Updated: 2019/09/02 09:53:48 by svoort        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -g -Wall -Wextra -Werror -I includes/
+FLAGS = -Wall -Wextra -Werror -I includes/
 MKEX = gcc $(FLAGS) -o
 _BONUS = check_bonus.c solve_sudoku.c read_sudoku_input.c solve_shop.c
 _USEFUL = main.c ft_error.c check_flags.c print_files.c get_folders.c \
 		get_path.c print_file.c print_blocks.c free.c linelist.c \
-		sort_list.c norminette1.c norminette2.c
+		sort_list.c norminette1.c norminette2.c block_size.c
 BONUS = $(addprefix bonus/, $(_BONUS))
 USEFUL = $(addprefix useful/, $(_USEFUL))
 _SRC = $(BONUS) $(USEFUL)
