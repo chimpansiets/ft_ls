@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/02 10:06:28 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/20 14:15:02 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct			s_linelist
 {
 	struct tm			time;
 	char				*content;
+	char				*filename;
 	size_t				content_size;
 	struct s_linelist	*next;
 	struct s_linelist	*prev;
@@ -112,8 +113,8 @@ void					ft_check_real_flags(int argc, char **argv);
 
 void					print_list(t_linelist *list);
 void					print_files(char *folder);
-void					add_or_init(t_linelist **list, \
-						char *content, struct tm time);
+void					add_or_init(t_linelist **list, char *content, struct tm time, \
+						char *filename);
 
 /*
 **	get_folders.c
@@ -160,7 +161,7 @@ void					solve_shop(void);
 */
 
 t_linelist				*ft_linelstnew(void const *content, \
-						size_t content_size, struct tm time);
+						size_t content_size, struct tm time, char *filename);
 void					ft_linelstadd(t_linelist **alst, t_linelist *new);
 
 /*

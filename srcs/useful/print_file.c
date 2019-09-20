@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 15:58:15 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/02 10:15:54 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/20 14:47:28 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ static char		*print_date_time(struct stat file_stat, t_file *file)
 char			*ft_printname(struct dirent *dir, struct stat file_stat)
 {
 	char	*ret;
+	char	buf[256];
 
 	ret = NULL;
-	if (dir->d_type == DT_DIR && (file_stat.st_mode & S_IXOTH) == 1)
+	if (S_ISLNK(file_stat.st_mode))
+		ret = ft_strdup("\e[0;35m");
+	else if (dir->d_type == DT_DIR && (file_stat.st_mode & S_IXOTH) == 1)
 		ret = ft_strdup("\e[1;36m");
 	else if ((file_stat.st_mode & S_IXOTH) == 1)
 		ret = ft_strdup("\e[0;31m");
@@ -55,6 +58,13 @@ char			*ft_printname(struct dirent *dir, struct stat file_stat)
 	}
 	else
 		ret = ft_strdup(dir->d_name);
+	if (S_ISLNK(file_stat.st_mode))
+	{
+		ret = ft_joinfree(ret, " -> ", 1);
+		ft_bzero(buf, 256);
+		readlink(dir->d_name, buf, 256);
+		ret = ft_joinfree(ret, buf, 1);
+	}
 	return (ret);
 }
 
@@ -68,7 +78,7 @@ static t_file	print_long_format(char *folder, struct dirent *dir)
 
 	line = ft_memalloc(1);
 	path = get_path(folder, dir->d_name);
-	if (stat(path, &file_stat) < 0)
+	if (lstat(path, &file_stat) < 0)
 		ft_error("Error getting file information (-l)\n");
 	tmp = print_permissions(file_stat);
 	line = ft_joinfree(line, tmp, 3);
@@ -94,8 +104,14 @@ static t_file	print_short_format(struct dirent *dir)
 	struct stat	file_stat;
 	struct tm	time;
 
-	stat(dir->d_name, &file_stat);
-	if (dir->d_type == DT_DIR && (file_stat.st_mode & S_IXOTH) == 1)
+	lstat(dir->d_name, &file_stat);
+	if (S_ISLNK(file_stat.st_mode))
+	{
+		line = ft_strdup("\e[0;35m");
+		line = ft_joinfree(line, dir->d_name, 1);
+		line = ft_joinfree(line, "\e[0m", 1);
+	}
+	else if (dir->d_type == DT_DIR && (file_stat.st_mode & S_IXOTH) == 1)
 	{
 		line = ft_strdup("\e[1;36m");
 		line = ft_joinfree(line, dir->d_name, 1);

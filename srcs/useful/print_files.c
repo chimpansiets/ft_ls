@@ -6,19 +6,20 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 16:48:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/02 10:06:15 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/20 14:00:25 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		add_or_init(t_linelist **list, char *content, struct tm time)
+void		add_or_init(t_linelist **list, char *content, struct tm time, \
+			char *filename)
 {
 	if (!(*list))
-		*list = ft_linelstnew(content, ft_strlen(content) + 1, time);
+		*list = ft_linelstnew(content, ft_strlen(content) + 1, time, filename);
 	else
 		ft_linelstadd(list, ft_linelstnew(content, \
-		ft_strlen(content) + 1, time));
+		ft_strlen(content) + 1, time, filename));
 }
 
 void		print_list(t_linelist *list)

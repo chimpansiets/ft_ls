@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/29 10:41:29 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 11:12:53 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/20 13:59:18 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void		print_and_add_to_lines(char *folder, struct dirent *dir, \
 	t_file		tmp_file;
 
 	tmp_file = ft_printfile(folder, dir);
-	add_or_init(lines, tmp_file.tmp_line, tmp_file.time);
+	add_or_init(lines, tmp_file.tmp_line, tmp_file.time, dir->d_name);
 	free(tmp_file.tmp_line);
 }

@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 10:51:29 by svoort         #+#    #+#                */
-/*   Updated: 2019/05/10 15:14:02 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/20 13:30:41 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ char				*ft_joinfree(char *s1, char *s2, int j);
 int					ft_is_int(char *str);
 int					ft_isspace(char c);
 char				*ft_strcdup(const char *src, char c);
+char				*ft_lastword(char *content);
 
 #endif

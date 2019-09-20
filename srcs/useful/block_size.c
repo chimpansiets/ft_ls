@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/09/02 09:51:37 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/02 10:04:29 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/20 13:12:36 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		get_block_size(char *directory)
 				if (directory[strlen(directory) - 1] != '/')
 					strcat(info_path, "/");
 				strcat(info_path, dir->d_name);
-				stat(info_path, &file_stat);
+				lstat(info_path, &file_stat);
 				size += file_stat.st_blocks;
 			}
 		}

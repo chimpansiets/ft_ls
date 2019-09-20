@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/28 13:00:49 by svoort         #+#    #+#                */
-/*   Updated: 2019/08/29 10:00:41 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/20 14:13:41 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void		ft_linelstadd(t_linelist **alst, t_linelist *new)
 }
 
 t_linelist	*ft_linelstnew(void const *content, \
-			size_t content_size, struct tm time)
+			size_t content_size, struct tm time, char *filename)
 {
 	t_linelist	*new;
 
@@ -41,6 +41,7 @@ t_linelist	*ft_linelstnew(void const *content, \
 			return (NULL);
 		ft_memcpy(new->content, content, content_size);
 		new->time = time;
+		new->filename = filename;
 		new->content_size = content_size;
 	}
 	new->next = NULL;
