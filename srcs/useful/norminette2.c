@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/29 11:14:21 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/20 12:07:00 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/21 13:21:47 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,21 @@ void	print_header(char *folder)
 	ft_printf("%s: \n", folder);
 	if (g_fl.flags.l)
 		ft_printf("total %i\n", get_block_size(folder));
+}
+
+char	*normie1(struct stat file_stat, \
+		struct dirent *dir, char *input)
+{
+	char	buf[256];
+	char	*ret;
+
+	ret = input;
+	if (S_ISLNK(file_stat.st_mode))
+	{
+		ret = ft_joinfree(input, " -> ", 1);
+		ft_bzero(buf, 256);
+		readlink(dir->d_name, buf, 256);
+		ret = ft_joinfree(ret, buf, 1);
+	}
+	return (ret);
 }

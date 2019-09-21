@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/29 10:41:29 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/20 13:59:18 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/21 13:09:04 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char		*print_owner_group(struct stat file_stat)
 	pw = getpwuid(file_stat.st_uid);
 	gr = getgrgid(file_stat.st_gid);
 	ret = (char *)ft_memalloc(sizeof(char) * 256);
-	sprintf(ret, "%s\t%s ", pw->pw_name, gr->gr_name);
+	if (pw && gr)
+		sprintf(ret, "%s\t%s ", pw->pw_name, gr->gr_name);
 	return (ret);
 }
 

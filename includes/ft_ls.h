@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/01 13:31:31 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/20 14:15:02 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/21 13:26:39 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void					ft_check_real_flags(int argc, char **argv);
 
 void					print_list(t_linelist *list);
 void					print_files(char *folder);
-void					add_or_init(t_linelist **list, char *content, struct tm time, \
-						char *filename);
+void					add_or_init(t_linelist **list, char *content, \
+						struct tm time, char *filename);
 
 /*
 **	get_folders.c
@@ -192,6 +192,15 @@ void					init_variables_to_reduce_lines(char ***paths, \
 						t_linelist **lines, DIR **d, char *folder);
 void					print_and_sort(t_linelist **lines);
 void					print_header(char *folder);
+char					*normie1(struct stat file_stat, \
+						struct dirent *dir, char *input);
+
+/*
+**	norminette3.c
+*/
+
+char					*short_format_flow(struct dirent *dir, \
+						struct stat file_stat);
 
 /*
 **	block_size.c

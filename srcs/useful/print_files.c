@@ -6,7 +6,7 @@
 /*   By: svoort <svoort@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/20 16:48:50 by svoort         #+#    #+#                */
-/*   Updated: 2019/09/20 14:00:25 by svoort        ########   odam.nl         */
+/*   Updated: 2019/09/21 13:00:39 by svoort        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		print_list(t_linelist *list)
 	t_linelist	*tmp;
 
 	tmp = list;
-	if (!g_fl.flags.r)
+	if (!g_fl.flags.r && tmp)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
